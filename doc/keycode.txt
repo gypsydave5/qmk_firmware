@@ -60,7 +60,7 @@ KC_RBRACKET         KC_RBRC         30 Keyboard ] and }
 KC_BSLASH           KC_BSLS         31 Keyboard \ and |
 KC_NONUS_HASH       KC_NUHS         32 Keyboard Non-US # and ~
 KC_SCOLON           KC_SCLN         33 Keyboard ; and :
-KC_QUOTE            KC_QUOT         34 Keyboard ‘ and “
+KC_QUOTE            KC_QUOT         34 Keyboard ' and "
 KC_GRAVE            KC_GRV          35 Keyboard Grave Accent and Tilde
 KC_COMMA            KC_COMM         36 Keyboard , and <
 KC_DOT                              37 Keyboard . and >
