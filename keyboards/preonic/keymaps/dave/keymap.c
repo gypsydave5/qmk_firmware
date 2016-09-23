@@ -20,7 +20,40 @@
 #define _KEYPAD 8
 #define _ADJUST 16
 
-enum preonic_keycodes { COLEMAK, LOWER, RAISE, BACKLIT };
+// APL Keycodes - starting with Monadic Functions
+#define APL_ROLL UC(0x003F)  // ?
+#define APL_CEIL UC(0x2308)  // ⌈
+#define APL_FLR UC(0x230A)   // ⌊
+#define APL_SHP UC(0x2374)   // ⍴
+#define APL_NOT UC(0x223C)   // ∼
+#define APL_ABS UC(0x2223)   // ∣
+#define APL_IDXG UC(0x2373)  // ⍳
+#define APL_EXP UC(0x22C6)   // ⋆
+#define APL_NEG UC(0x2212)   // −
+#define APL_ID UC(0x002B)    // +
+#define APL_SGNM UC(0x00D7)  // ×
+#define APL_RCPR UC(0x00F7)  // ÷
+#define APL_RCL UC(0x002C)   // ,
+#define APL_MXINV UC(0x2339) // ⌹
+#define APL_PITMS UC(0x25CB) // ○
+#define APL_LOG UC(0x235F)   // ⍟
+#define APL_REVL UC(0x233D)  // ⌽
+#define APL_REVF UC(0x2296)  // ⊖
+#define APL_GDUP UC(0x234B)  // ⍋
+#define APL_GDDN UC(0x2352)  // ⍒
+#define APL_EXE UC(0x234E)   // ⍎
+#define APL_MFMT UC(0x2355)  // ⍕
+#define APL_MTSP UC(0x2349)  // ⍉
+#define APL_FAC UC(0x0021)   // !
+
+enum preonic_keycodes {
+  COLEMAK = SAFE_RANGE,
+  APL,
+  APL_SFT,
+  LOWER,
+  RAISE,
+  KEYPAD
+};
 
 enum { TD_SPC_ENT = 0 };
 
