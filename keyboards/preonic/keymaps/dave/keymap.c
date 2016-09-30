@@ -46,6 +46,11 @@
 #define APL_MTSP UC(0x2349)  // ⍉
 #define APL_FAC UC(0x0021)   // !
 
+// Dyadic
+#define APL_EPS UC(0x2208)  // ∈
+#define APL_TAKE UC(0x2191) // ↑
+#define APL_DROP UC(0x2193) // ↓
+
 enum preonic_keycodes {
   COLEMAK = SAFE_RANGE,
   APL,
