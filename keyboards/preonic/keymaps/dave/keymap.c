@@ -62,9 +62,7 @@ enum preonic_keycodes {
 
 enum { TD_SPC_ENT = 0 };
 
-qk_tap_dance_action_t tap_dance_actions[] = {
-        [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
-};
+qk_tap_dance_action_t tap_dance_actions[] = {};
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -75,14 +73,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [_COLEMAK] = {{KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8,
                        KC_9, KC_0, KC_BSPC},
                       {GUI_T(KC_TAB), KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L,
-                       KC_U, KC_Y, KC_SCLN, GUI_T(KC_BSLS)},
+                       KC_U, KC_Y, KC_SCLN, GUI_T(KC_BSLASH)},
                       {CTL_T(KC_ESC), KC_A, KC_R, KC_S, KC_T, KC_D, KC_H, KC_N,
                        KC_E, KC_I, KC_O, CTL_T(KC_QUOT)},
                       {KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_K, KC_M,
                        KC_COMM, KC_DOT, KC_SLSH, KC_RSPC},
-                      {KEYPAD, KC_NO, KC_NO, LOWER, ALT_T(KC_LBRC),
-                       TD(TD_SPC_ENT), TD(TD_SPC_ENT), ALT_T(KC_RBRC), RAISE,
-                       KC_NO, KC_NO, KC_NO}},
+                      {KEYPAD, KC_NO, KC_NO, LOWER, ALT_T(KC_LBRC), KC_ENT,
+                       KC_SPC, ALT_T(KC_RBRC), RAISE, KC_NO, KC_NO, KC_NO}},
 
         [_APL] = {{_______, _______, _______, _______, _______, _______,
                    _______, _______, _______, _______, _______, _______},
@@ -111,21 +108,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     {KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8,
                      KC_F9, KC_F10, KC_F11, KC_F12},
                     {_______, _______, _______, _______, _______, _______,
-                     _______, KC_MINUS, KC_EQL, _______, _______, _______},
+                     KC_PIPE, KC_MINUS, KC_EQL, KC_BSLASH, KC_QUOT, KC_DQUO},
                     {_______, _______, _______, _______, _______, _______,
                      _______, KC_UNDS, KC_PLUS, KC_PGDN, KC_UP, KC_PGUP},
-                    {RESET, _______, _______, _______, _______, _______,
-                     _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP}},
-
-        [_RAISE] = {{_______, _______, _______, _______, _______, _______,
-                     _______, _______, _______, _______, _______, _______},
                     {_______, _______, _______, _______, _______, _______,
-                     _______, _______, _______, _______, _______, _______},
+                     _______, _______, _______, KC_LEFT, KC_DOWN, KC_RIGHT}},
+
+        [_RAISE] = {{KC_F13, KC_F14, KC_F15, KC_F16, KC_F17, KC_F18, KC_F19,
+                     KC_F20, KC_F21, KC_F22, KC_F23, KC_F24},
+                    {KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8,
+                     KC_F9, KC_F10, KC_F11, KC_F12},
                     {_______, KC_1, KC_2, KC_3, KC_4, KC_5, _______, _______,
                      _______, _______, _______, _______},
                     {_______, KC_6, KC_7, KC_8, KC_9, KC_0, _______, _______,
                      _______, _______, _______, _______},
-                    {RESET, _______, _______, _______, _______, _______,
+                    {_______, _______, _______, _______, _______, _______,
                      _______, _______, _______, _______, _______, _______}},
 
         [_KEYPAD] = {{_______, _______, _______, _______, _______, _______,
@@ -139,16 +136,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      {_______, _______, _______, _______, _______, _______,
                       KC_P0, KC_P0, KC_PDOT, KC_PENT, _______, _______}},
 
-        [_ADJUST] = {{_______, _______, _______, _______, _______, _______,
-                      _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_PWR},
-                     {_______, RESET, _______, _______, _______, _______,
-                      _______, _______, _______, _______, _______, KC_DEL},
-                     {_______, _______, _______, AU_ON, AU_OFF, AG_NORM,
-                      AG_SWAP, _______, _______, _______, _______, _______},
+        [_ADJUST] = {{RESET, RESET, _______, _______, _______, _______, _______,
+                      _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_PWR},
+                     {RESET, RESET, _______, _______, _______, _______, _______,
+                      _______, _______, _______, _______, KC_DEL},
+                     {_______, APL, _______, AU_ON, AU_OFF, AG_NORM, AG_SWAP,
+                      COLEMAK, COLEMAK, _______, _______, _______},
                      {_______, MUV_DE, MUV_IN, MU_ON, MU_OFF, MI_ON, MI_OFF,
                       _______, _______, _______, _______, _______},
                      {_______, _______, _______, _______, _______, _______,
-                      _______, _______, _______, _______, _______, _______}}};
+                      _______, _______, _______, _______, APL, COLEMAK}}};
 
 #ifdef AUDIO_ENABLE
 float tone_startup[][2] = {
@@ -171,7 +168,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case COLEMAK:
     if (record->event.pressed) {
 #ifdef AUDIO_ENABLE
-      PLAY_NOTE_ARRAY(tone_colemak, false, 0);
+      PLAY_NOTE_ARRAY(tone_qwerty, false, 0);
 #endif
       persistant_default_layer_set(1UL << _COLEMAK);
     }
@@ -199,9 +196,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
   case APL:
     if (record->event.pressed) {
-      layer_on(_APL);
-    } else {
-      layer_off(_APL);
+#ifdef AUDIO_ENABLE
+      PLAY_NOTE_ARRAY(tone_dvorak, false, 0);
+#endif
+      persistant_default_layer_set(1UL << _APL);
     }
     return false;
     break;
